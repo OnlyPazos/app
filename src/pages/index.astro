@@ -1,16 +1,21 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/product/ProductCard.astro";
+import { products } from "../data/products";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Inicio">
+	<h1>Productos</h1>
+
+	<section class="grid">
+		{products.map((product) => <ProductCard product={product} />)}
+	</section>
+</BaseLayout>
+
+<style>
+	.grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+</style>

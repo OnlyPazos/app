@@ -1,0 +1,23 @@
+:root {
+  --color-primary: #111;
+  --color-accent: #0ea5e9;
+  --color-bg: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}

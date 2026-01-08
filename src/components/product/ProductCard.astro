@@ -1,0 +1,23 @@
+---
+const { product } = Astro.props;
+---
+
+<article class="card">
+  <img src={product.image} alt={product.name} />
+  <h2>{product.name}</h2>
+  <p>${product.price}</p>
+  <a href={`/productos/${product.slug}`}>Ver producto</a>
+</article>
+
+<style>
+  .card {
+    border: 1px solid #eee;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+</style>
