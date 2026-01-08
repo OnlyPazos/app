@@ -1,4 +1,6 @@
 ---
+import AddToCartButton from "../cart/AddToCartButton";
+
 const { product } = Astro.props;
 ---
 
@@ -6,6 +8,16 @@ const { product } = Astro.props;
   <img src={product.image} alt={product.name} />
   <h2>{product.name}</h2>
   <p>${product.price}</p>
+
+  <AddToCartButton
+    client:only="react"
+    product={{
+      id: product.id,
+      name: product.name,
+      price: product.price,
+    }}
+  />
+
   <a href={`/productos/${product.slug}`}>Ver producto</a>
 </article>
 

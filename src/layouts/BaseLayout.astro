@@ -1,18 +1,24 @@
 ---
+import Cart from "../components/cart/Cart";
+import { CartProvider } from "../components/cart/CartContext";
 import "../styles/global.css";
 const { title = "E-commerce Astro" } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    <meta name="description" content={`Compra ${title} al mejor precio`} />
   </head>
   <body>
-    <main class="container">
-      <slot />
-    </main>
+    <CartProvider client:only="react">
+      <Cart client:only="react" />
+      <main class="container">
+        <slot />
+      </main>
+    </CartProvider>
   </body>
 </html>

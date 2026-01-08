@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AddToCartButton from "../../components/cart/AddToCartButton.tsx";
+import { products } from "../../data/products";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<BaseLayout title={product.name}>
+  <article class="product">
+    <img src={product.image} alt={product.name} />
+
+    <section>
+      <h1>{product.name}</h1>
+      <p class="price">${product.price}</p>
+
+      <AddToCartButton
+        client:only="react"
+        product={{
+          id: product.id,
+          name: product.name,
+          price: product.price,
+        }}
+      />
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .product {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+</style>
